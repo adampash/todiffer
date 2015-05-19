@@ -1,4 +1,9 @@
-<h2>
-  <%= @text.title %>
-</h2>
-  <%= @text.text %>
+<%# <%= react_component('DiffViewer', {title: @text.title}, {prerender: true}) %>
+<%= react_component(
+  'DiffViewer',
+  {
+    title: @text.title,
+    text: @text.text,
+  },
+  # {prerender: true}
+) %>
