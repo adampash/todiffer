@@ -250,6 +250,7 @@ DEPENDENCIES
   jquery-rails
   mechanize
   pg
+  pry
   rails (= 4.2.0)
   rails_12factor
   react-rails

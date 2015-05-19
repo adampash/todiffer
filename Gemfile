@@ -55,5 +55,6 @@ group :development, :test do
   gem 'vcr'
   gem 'guard-rspec'
   gem 'rspec-rails'
+  gem 'pry'
 end
 
