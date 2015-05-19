@@ -26,12 +26,14 @@ ActiveRecord::Schema.define(version: 20150519150430) do
   end
 
   create_table "texts", force: :cascade do |t|
-    t.string   "url",                          null: false
-    t.datetime "last_check",                   null: false
-    t.integer  "submitted_by_id",              null: false
-    t.string   "selector",        default: "", null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "url",             null: false
+    t.datetime "last_check",      null: false
+    t.datetime "check_at",        null: false
+    t.integer  "submitted_by_id", null: false
+    t.string   "selector"
+    t.string   "md5",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150519150430) do
     t.text     "text",                    null: false
     t.string   "md5",                     null: false
     t.string   "title",      default: ""
+    t.integer  "text_id",                 null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

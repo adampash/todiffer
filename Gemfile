@@ -9,8 +9,14 @@ gem 'pg'
 # serve static assets on heroku
 gem 'rails_12factor', group: :production
 
+# httparty for http requests to text fetch api
+gem 'httparty'
+
 # reactjs w/rails
 gem 'react-rails'
+
+# rack-cors for submitting from other domains
+gem 'rack-cors', :require => 'rack/cors'
 
 # auth w/devise + google omniauth
 gem 'devise'
