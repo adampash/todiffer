@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
     :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :submitted_texts, class_name: "Text", foreign_key: :submitted_by_id
+  has_many :watched_texts
   has_many :texts, through: :watched_texts
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)

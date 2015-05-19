@@ -7,19 +7,22 @@ class Text < ActiveRecord::Base
   belongs_to :site
   belongs_to :submitting_user, class_name: 'User',
     foreign_key: :submitted_by_id
-  has_many :watched_texts
+  has_many :watched_texts, dependent: :destroy
   has_many :watching_users, through: :watched_texts, class_name: 'User',
     source: :user
 
   validates :url, uniqueness: true
 
   ### CLASS METHODS
-  def self.find_or_create url, user
+  def self.find_or_create options
     # TODO Remove below when user auth better set up
-    user = user || User.first
-    text = Text.find_or_initialize_by url: url
+    user = options[:user] || User.first
+    url = options[:url]
+    selector = options[:selector]
+
+    text = Text.find_or_initialize_by(url: url, selector: selector)
     if text.new_record?
-      text.check_at = DateTime.now
+      text.check_at = Time.now
       text.submitting_user = user
       Text.fetch_new_version text
       text.watching_users << user
@@ -30,7 +33,7 @@ class Text < ActiveRecord::Base
 
   def self.fetch_new_version(text)
     content = text.fetch
-    text.last_check = DateTime.now
+    text.last_check = Time.now
     if text.md5 == content["md5"]
       text.set_next_check
     else
