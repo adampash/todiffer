@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519142010) do
+ActiveRecord::Schema.define(version: 20150519150430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "google_plus"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "texts", force: :cascade do |t|
+    t.string   "url",                          null: false
+    t.datetime "last_check",                   null: false
+    t.integer  "submitted_by_id",              null: false
+    t.string   "selector",        default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "", null: false
@@ -34,5 +52,21 @@ ActiveRecord::Schema.define(version: 20150519142010) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.text     "text",                    null: false
+    t.string   "md5",                     null: false
+    t.string   "title",      default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "watched_texts", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "text_id",                    null: false
+    t.boolean  "notify",     default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
 end
