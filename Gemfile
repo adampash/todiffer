@@ -9,10 +9,6 @@ gem 'pg'
 # serve static assets on heroku
 gem 'rails_12factor', group: :production
 
-# mechanize to accept cookies/follow redirects
-gem 'mechanize'
-gem 'httparty'
-
 # reactjs w/rails
 gem 'react-rails'
 
