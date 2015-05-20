@@ -2,7 +2,7 @@ class TextsController < ApplicationController
   protect_from_forgery :except => [:create]
   # before_action :authenticate_user!, only: [:create]
   def index
-    @texts = current_user.texts
+    @texts = current_user.texts.order('version_added_at ASC')
   end
 
   def create

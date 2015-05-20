@@ -13,6 +13,8 @@ class Text < ActiveRecord::Base
 
   validates :url, uniqueness: true
 
+  default_scope { order 'version_added_at DESC' }
+
   ### CLASS METHODS
   def self.find_or_create options
     # TODO Remove below when user auth better set up
@@ -44,7 +46,10 @@ class Text < ActiveRecord::Base
       )
 
       text.versions << version
-      text.update_attributes(md5: content['md5'])
+      text.update_attributes(
+        md5: content['md5'],
+        version_added_at: Time.now
+      )
       text.set_next_check
     end
   end
