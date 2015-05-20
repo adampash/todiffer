@@ -15,6 +15,9 @@ gem 'httparty'
 # reactjs w/rails
 gem 'react-rails'
 
+# Background jobs w/sidekiq
+gem 'sidekiq'
+
 # rack-cors for submitting from other domains
 gem 'rack-cors', :require => 'rack/cors'
 
