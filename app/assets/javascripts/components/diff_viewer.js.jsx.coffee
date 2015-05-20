@@ -31,7 +31,8 @@
       # dmp.diff_cleanupSemantic(d)
       dmp.diff_cleanupEfficiency(d)
       text = dmp.diff_prettyHtml(d)
-      text = $('<textarea />').html(text).text()
+      # decodeHTML text
+      # text = $('<textarea />').html(text).text()
 
   handleIncrement: ->
     new_last_index = Math.min(@props.version_count-1, @state.last_index + 1)
