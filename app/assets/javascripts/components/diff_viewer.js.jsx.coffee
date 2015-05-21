@@ -18,12 +18,13 @@
     else
       dmp = new diff_match_patch()
       dmp.Diff_EditCost = 15
-      text1 = marked text1
-      text2 = marked text2
+      # text1 = marked text1
+      # text2 = marked text2
       d = dmp.diff_main(text1, text2)
       # dmp.diff_cleanupSemantic(d)
       dmp.diff_cleanupEfficiency(d)
       text = dmp.diff_prettyHtml(d)
+      text = marked text
       # decodeHTML text
       # text = $('<textarea />').html(text).text()
 
@@ -57,6 +58,7 @@
         handleDecrement={this.handleDecrement}
         v1={this.state.v1}
         v2={this.state.v2}
+        url={this.props.url}
       />
       <div className="text_view">
         <h2 dangerouslySetInnerHTML=

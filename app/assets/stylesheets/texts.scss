@@ -14,6 +14,10 @@ ins, del {
 }
 ins {
   text-decoration: none;
+  background: #e6ffe6;
+}
+del {
+  background: #ffe6e6;
 }
 
 .text_view {
@@ -42,10 +46,10 @@ ins {
   width: 160px;
   font-size: 4px;
   ins {
-    background-color: green !important;
+    background-color: #78FF78 !important;
   }
   del {
-    background-color: red !important;
+    background-color: #EF8888 !important;
     text-decoration: none;
   }
   a {

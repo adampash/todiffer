@@ -20,6 +20,9 @@
         <li>
           Comparing: Version {this.props.first} :: Version {this.props.last}
         </li>
+        <li>
+          <a href={this.props.url} target="_blank">Original</a>
+        </li>
       </ul>
     </div>`
 
