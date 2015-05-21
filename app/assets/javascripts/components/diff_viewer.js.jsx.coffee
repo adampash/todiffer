@@ -59,6 +59,7 @@
         v1={this.state.v1}
         v2={this.state.v2}
         url={this.props.url}
+        author={this.props.author}
       />
       <div className="text_view">
         <h2 dangerouslySetInnerHTML=

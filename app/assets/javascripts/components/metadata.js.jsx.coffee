@@ -15,7 +15,7 @@
           Submitted by: <a href={"/user/" + this.props.submitted_by.id}>{this.props.submitted_by.name}</a>
         </li>
         <li>
-          Author: {this.props.version_count}
+          Author: {this.props.author.name}
         </li>
         <li>
           Comparing: Version {this.props.first} :: Version {this.props.last}

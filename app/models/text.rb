@@ -25,7 +25,7 @@ class Text < ActiveRecord::Base
     text = Text.find_or_initialize_by(url: url, selector: selector)
     if text.new_record?
       text.check_at = Time.now
-      text.submitting_user = user
+      text.submitted_by = user
       Text.fetch_new_version text
       text.watching_users << user
       text.save
@@ -60,6 +60,9 @@ class Text < ActiveRecord::Base
         md5: content['md5'],
         version_added_at: Time.now
       )
+      if text.version_count == 1
+        text.add_author(content["author"])
+      end
       text.set_next_check(1.minute)
     end
   end
@@ -80,6 +83,11 @@ class Text < ActiveRecord::Base
     params[:body][:md5] = md5 unless md5.nil?
     params[:body][:selector] = selector unless selector.nil?
     self.class.post TXT_FETCH_API, params
+  end
+
+  def add_author(options)
+    this_author = Author.find_or_create_best(options)
+    update_attributes(author_id: this_author.id) unless this_author.nil?
   end
 
   def version_already_exists?
