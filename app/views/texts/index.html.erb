@@ -1,3 +1,5 @@
 <% @texts.each do |text| %>
-  <%= link_to text.title, text_path(text) %> Versions: <%= text.version_count %><br />
+  <%= link_to text.title, text_path(text) %>
+  Last version: <%= text.version_added_at %>
+  Versions: <%= text.version_count %><br />
 <% end %>

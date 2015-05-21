@@ -4,7 +4,12 @@
     versions: @text.versions,
     version_count: @text.versions.count,
     first_index: 0,
-    last_index: @text.versions.count - 1
+    last_index: @text.versions.count - 1,
+    submitted_by: {
+      name: @text.submitted_by.name,
+      id: @text.submitted_by.id,
+    },
+    site: @text.site,
   },
   {prerender: true}
 ) %>

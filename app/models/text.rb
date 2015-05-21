@@ -5,7 +5,7 @@ class Text < ActiveRecord::Base
   has_many :versions, dependent: :destroy
   belongs_to :author
   belongs_to :site
-  belongs_to :submitting_user, class_name: 'User',
+  belongs_to :submitted_by, class_name: 'User',
     foreign_key: :submitted_by_id
   has_many :watched_texts, dependent: :destroy
   has_many :watching_users, through: :watched_texts, class_name: 'User',
@@ -111,6 +111,13 @@ class Text < ActiveRecord::Base
 
   def text
     latest_version.text
+  end
+
+  def site
+    site = url.match(/(http|ftp)s?:\/\/((\w+\.)?(\w+\.)(\w+))\//)
+    site = site[2] unless site[2].nil?
+    site.sub!(/^www\./, '')
+    site.capitalize
   end
 
   protected

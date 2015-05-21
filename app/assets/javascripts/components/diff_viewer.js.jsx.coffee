@@ -1,11 +1,4 @@
 @DiffViewer = React.createClass
-  sigil:
-    ins:
-      start: '<ins>'
-      end: '</ins>'
-    del:
-      start: '<del>'
-      end: '</del>'
   getInitialState: ->
     text = ""
     v1 = @props.versions[@props.first_index]
@@ -54,10 +47,18 @@
     )
   render: ->
     `<div>
+      <Metadata
+        version_count={this.props.version_count}
+        submitted_by={this.props.submitted_by}
+        first={this.state.first_index + 1}
+        last={this.state.last_index + 1}
+        site={this.props.site}
+        handleIncrement={this.handleIncrement}
+        handleDecrement={this.handleDecrement}
+        v1={this.state.v1}
+        v2={this.state.v2}
+      />
       <div className="text_view">
-        <button onClick={this.handleDecrement}>-</button>
-        <button onClick={this.handleIncrement}>+</button>
-        <div>{this.state.v1.md5 == this.state.v2.md5 ? 'equal' : 'different'}</div>
         <h2 dangerouslySetInnerHTML=
           {{
             __html: this.state.title
