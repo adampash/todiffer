@@ -11,7 +11,7 @@ class Text < ActiveRecord::Base
   has_many :watching_users, through: :watched_texts, class_name: 'User',
     source: :user
 
-  validates :url, uniqueness: true
+  validate :unique_selection
 
   default_scope { order 'version_added_at DESC' }
 
@@ -29,6 +29,10 @@ class Text < ActiveRecord::Base
       Text.fetch_new_version text
       text.watching_users << user
       text.save
+    else
+      unless user.follows_text? text
+        text.watching_users << user
+      end
     end
     text
   end
@@ -97,6 +101,14 @@ class Text < ActiveRecord::Base
 
   def text
     latest_version.text
+  end
+
+  protected
+  def unique_selection
+    self.class.exists?(
+        :url => url,
+        :selector => selector
+     )
   end
 
 end

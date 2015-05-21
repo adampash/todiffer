@@ -1,10 +1,13 @@
 class WatchedText < ActiveRecord::Base
   belongs_to :user
   belongs_to :text
+  validate :unique_pair
 
-  default_scope { order 'version_added_at DESC' }
-
-  def version_added_at
-    text.version_added_at
+  protected
+  def unique_pair
+    !self.class.exists?(
+        :user_id => user_id,
+        :text_id => text_id
+     )
   end
 end

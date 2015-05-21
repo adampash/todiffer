@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def followed_texts
+    texts
+  end
+
+  def follows_text?(text_id)
+    watched_texts.where(text_id: text_id).length > 0
+  end
+
   def texts_tracked
 
   end

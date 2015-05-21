@@ -24,7 +24,7 @@
       text = marked text1
     else
       dmp = new diff_match_patch()
-      dmp.Diff_EditCost = 6
+      dmp.Diff_EditCost = 15
       text1 = marked text1
       text2 = marked text2
       d = dmp.diff_main(text1, text2)
@@ -54,17 +54,31 @@
     )
   render: ->
     `<div>
-      <button onClick={this.handleDecrement}>-</button>
-      <button onClick={this.handleIncrement}>+</button>
-      <div>{this.state.v1.md5 == this.state.v2.md5 ? 'equal' : 'different'}</div>
-      <h2 dangerouslySetInnerHTML=
-        {{
-          __html: this.state.title
-        }}
-      />
-      <div dangerouslySetInnerHTML=
-        {{
-            __html: this.state.text
-        }}
-      />
+      <div className="text_view">
+        <button onClick={this.handleDecrement}>-</button>
+        <button onClick={this.handleIncrement}>+</button>
+        <div>{this.state.v1.md5 == this.state.v2.md5 ? 'equal' : 'different'}</div>
+        <h2 dangerouslySetInnerHTML=
+          {{
+            __html: this.state.title
+          }}
+        />
+        <div dangerouslySetInnerHTML=
+          {{
+              __html: this.state.text
+          }}
+        />
+      </div>
+      <div className="tiny_text">
+        <h2 dangerouslySetInnerHTML=
+          {{
+            __html: this.state.title
+          }}
+        />
+        <div dangerouslySetInnerHTML=
+          {{
+              __html: this.state.text
+          }}
+        />
+      </div>
     </div>`
