@@ -37,6 +37,12 @@ class Text < ActiveRecord::Base
     text
   end
 
+  def self.version_check(text_id)
+    text = find text_id
+    fetch_new_version text
+  end
+
+
   def self.fetch_new_version(text)
     content = text.fetch
     text.last_check = Time.now
@@ -54,7 +60,7 @@ class Text < ActiveRecord::Base
         md5: content['md5'],
         version_added_at: Time.now
       )
-      text.set_next_check
+      text.set_next_check(1.minute)
     end
   end
 
@@ -84,15 +90,19 @@ class Text < ActiveRecord::Base
     end
   end
 
-
-  def set_next_check
-    new_check = Time.now + (Time.now - latest_version.created_at)*2
+  def set_next_check(addl_time=0)
+    new_check = Time.now + (Time.now - latest_version.created_at)*2 + addl_time
     new_check = [new_check, Time.now + 2.days].min
     update_attribute('check_at', new_check)
+    Text.delay_until(new_check).version_check(id)
   end
 
   def latest_version
     versions.last
+  end
+
+  def version_count
+    versions.count
   end
 
   def title

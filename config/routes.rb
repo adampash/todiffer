@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'texts/create'
 
   get 'pages/home'
 
@@ -9,6 +8,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :texts
+  require 'sidekiq/web'
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   root 'pages#home'
 
   # Example of regular route:

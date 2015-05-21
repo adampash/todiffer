@@ -17,6 +17,7 @@ gem 'react-rails'
 
 # Background jobs w/sidekiq
 gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 # rack-cors for submitting from other domains
 gem 'rack-cors', :require => 'rack/cors'
