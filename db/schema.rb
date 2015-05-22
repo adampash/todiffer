@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521220631) do
+ActiveRecord::Schema.define(version: 20150522022652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "google_plus"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
     t.string   "twitter"
     t.string   "facebook"
     t.string   "google_plus"
@@ -36,9 +45,11 @@ ActiveRecord::Schema.define(version: 20150521220631) do
     t.datetime "updated_at",       null: false
     t.datetime "version_added_at"
     t.integer  "author_id"
+    t.integer  "site_id"
   end
 
   add_index "texts", ["author_id"], name: "index_texts_on_author_id", using: :btree
+  add_index "texts", ["site_id"], name: "index_texts_on_site_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "", null: false

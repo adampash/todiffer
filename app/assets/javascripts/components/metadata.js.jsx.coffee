@@ -1,12 +1,13 @@
 @Metadata = React.createClass
   render: ->
+    site_name = @props.site?.name or ''
     `<div className="metadata">
       <button onClick={this.props.handleDecrement}>-</button>
       <button onClick={this.props.handleIncrement}>+</button>
       <div>{this.props.v1.md5 == this.props.v2.md5 ? 'equal' : 'different'}</div>
       <ul>
         <li>
-          Site: {this.props.site}
+          Site: {site_name}
         </li>
         <li>
           Versions: {this.props.version_count}

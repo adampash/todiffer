@@ -63,6 +63,9 @@ class Text < ActiveRecord::Base
       if text.author.nil?
         text.add_author(content["author"])
       end
+      if text.site.nil?
+        text.add_site(content["site"])
+      end
       text.set_next_check(1.minute)
     end
   end
@@ -88,6 +91,11 @@ class Text < ActiveRecord::Base
   def add_author(options)
     this_author = Author.find_or_create_best(options)
     update_attributes(author_id: this_author.id) unless this_author.nil?
+  end
+
+  def add_site(options)
+    this_site = Site.find_or_create_best(options)
+    update_attributes(site_id: this_site.id) unless this_site.nil?
   end
 
   def version_already_exists?
@@ -121,12 +129,12 @@ class Text < ActiveRecord::Base
     latest_version.text
   end
 
-  def site
-    site = url.match(/(http|ftp)s?:\/\/((\w+\.)?(\w+\.)(\w+))\//)
-    site = site[2] unless site[2].nil?
-    site.sub!(/^www\./, '')
-    site.capitalize
-  end
+  # def site
+  #   site = url.match(/(http|ftp)s?:\/\/((\w+\.)?(\w+\.)(\w+))\//)
+  #   site = site[2] unless site[2].nil?
+  #   site.sub!(/^www\./, '')
+  #   site.capitalize
+  # end
 
   protected
   def unique_selection
