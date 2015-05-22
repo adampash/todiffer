@@ -3,7 +3,7 @@ module ApplicationHelper
     if user_signed_in?
       link_to "To Differ", texts_path
     else
-      link_to "To Differ", root
+      link_to "To Differ", root_path
     end
   end
 end
