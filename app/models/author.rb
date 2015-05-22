@@ -1,4 +1,5 @@
 class Author < ActiveRecord::Base
+  has_many :texts
 
   def self.find_or_create_best(options)
     twitter_handle = options["twitter"]

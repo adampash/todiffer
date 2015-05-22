@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'authors/index'
+
+  get 'authors/show'
+
   get 'pages/home'
 
   # devise_for :users
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :sites
+  resources :authors
   resources :texts
   require 'sidekiq/web'
   authenticate :user do

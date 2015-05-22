@@ -2,6 +2,8 @@
   render: ->
     site_name = @props.site?.name or ''
     site_id = @props.site?.id
+    author_name = @props.author?.name
+    author_id = @props.author?.id
     `<div className="metadata">
       <button onClick={this.props.handleDecrement}>-</button>
       <button onClick={this.props.handleIncrement}>+</button>
@@ -18,6 +20,7 @@
         </li>
         <li>
           Author: {this.props.author ? this.props.author.name : ''}
+          Author: <a href={"/authors/" + author_id}>{author_name}</a>
         </li>
         <li>
           Comparing: Version {this.props.first} :: Version {this.props.last}

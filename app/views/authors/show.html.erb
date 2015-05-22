@@ -1,0 +1,10 @@
+<h1><%= @author.name %></h1>
+<h2><%= @author.twitter %></h1>
+<ul>
+  <% @texts.each do |text| %>
+    <li>
+      <%= link_to text.title, text_path(text) %>
+      Versions: <%= text.version_count %>
+    </li>
+  <% end %>
+</ul>
