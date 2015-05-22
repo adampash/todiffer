@@ -64,7 +64,7 @@ class Text < ActiveRecord::Base
         text.add_author(content["author"])
       end
       if text.site.nil?
-        text.add_site(content["site"])
+        text.add_site(text.url, content["site"])
       end
       text.set_next_check(1.minute)
     end
@@ -93,8 +93,8 @@ class Text < ActiveRecord::Base
     update_attributes(author_id: this_author.id) unless this_author.nil?
   end
 
-  def add_site(options)
-    this_site = Site.find_or_create_best(options)
+  def add_site(url, options)
+    this_site = Site.find_or_create_best(url, options)
     update_attributes(site_id: this_site.id) unless this_site.nil?
   end
 
