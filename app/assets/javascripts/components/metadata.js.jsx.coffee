@@ -19,7 +19,6 @@
           Submitted by: <a href={"/user/" + this.props.submitted_by.id}>{this.props.submitted_by.name}</a>
         </li>
         <li>
-          Author: {this.props.author ? this.props.author.name : ''}
           Author: <a href={"/authors/" + author_id}>{author_name}</a>
         </li>
         <li>
