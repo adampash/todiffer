@@ -10,7 +10,6 @@ class Site < ActiveRecord::Base
     else
       site = find_by(name: site_name, domain: domain, twitter: twitter_handle)
     end
-    require 'pry'; binding.pry
     if site.nil?
       site = create(
         twitter: twitter_handle,
