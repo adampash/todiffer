@@ -60,7 +60,7 @@ class Text < ActiveRecord::Base
         md5: content['md5'],
         version_added_at: Time.now
       )
-      if text.version_count == 1
+      if text.author.nil?
         text.add_author(content["author"])
       end
       text.set_next_check(1.minute)
