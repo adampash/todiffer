@@ -22,7 +22,7 @@
       # text2 = marked text2
       d = dmp.diff_main(text1, text2)
       dmp.diff_cleanupSemantic(d)
-      # dmp.diff_cleanupEfficiency(d)
+      dmp.diff_cleanupEfficiency(d)
       text = dmp.diff_prettyHtml(d)
       text = marked text
       # decodeHTML text
