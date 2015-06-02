@@ -67,6 +67,9 @@ class Text < ActiveRecord::Base
         text.add_site(text.url, content["site"])
       end
       text.set_next_check(1.minute)
+      if text.version_count > 1
+        Notifier.slack(text)
+      end
     end
   end
 
