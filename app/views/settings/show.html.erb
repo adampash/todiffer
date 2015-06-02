@@ -1,0 +1,6 @@
+<%= form_for current_user, url: settings_path do |f| %>
+  <label>
+    Slack username:
+    <%= f.text_field :slack_username %>
+  </label>
+<% end %>
