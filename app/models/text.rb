@@ -1,3 +1,5 @@
+require 'notifier'
+
 class Text < ActiveRecord::Base
   include HTTParty
   TXT_FETCH_API = "https://text-fetch.herokuapp.com"
