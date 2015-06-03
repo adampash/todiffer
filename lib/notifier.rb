@@ -1,16 +1,13 @@
-require 'slack-notifier'
-
 module Notifier
   def self.slack(text)
     text.watched_texts.each do |watched_text|
       user = watched_text.user
-      puts "Checking text"
       if should_send?(watched_text) and has_slack?(user)
-        puts "Should notify for #{text.url} and #{text.user.name}"
+        puts "Should notify #{user.slack_username} for #{text.url}"
         notifier = Slack::Notifier.new ENV["SLACK_WEBHOOK"],
           channel: "@#{user.slack_username}",
           username: "ToDifferBot"
-        notifier.ping "Update! #{text.url}"
+        notifier.ping "New update to #{text.url}"
       end
     end
   end
