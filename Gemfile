@@ -59,6 +59,7 @@ gem 'slack-notifier'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'certified'
   # use dotenv to load environment variables in dev and test
   gem 'dotenv-rails'
 
