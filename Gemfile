@@ -55,6 +55,7 @@ gem 'puma'
 
 gem 'slack-notifier'
 
+gem 'rollbar', '~> 1.2.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
